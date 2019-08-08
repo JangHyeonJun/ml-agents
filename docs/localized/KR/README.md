@@ -79,7 +79,7 @@ Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2
 
 ## 한글 번역
 
-유니티 ML-Agents 관련 문서의 한글 번역은 [장현준(Hyeonjun Jang)][https://github.com/JangHyeonJun],  [민규식 (Kyushik Min)]([https://github.com/Kyushik](https://github.com/Kyushik))에 의해 진행되었습니다. 내용상 오류나 오탈자가 있는 경우 각 문서의 번역을 진행한 사람의 이메일을 통해 연락주시면 감사드리겠습니다.
+유니티 ML-Agents 관련 문서의 한글 번역은 [장현준(Hyeonjun Jang)](https://github.com/JangHyeonJun),  [민규식 (Kyushik Min)](https://github.com/Kyushik)에 의해 진행되었습니다. 내용상 오류나 오탈자가 있는 경우 각 문서의 번역을 진행한 사람의 이메일을 통해 연락주시면 감사드리겠습니다.
 
 장현준: totok682@naver.com
 
