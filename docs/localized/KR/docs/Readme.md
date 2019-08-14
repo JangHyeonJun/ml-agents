@@ -36,7 +36,7 @@
 
 * [ML-Agents 학습](Training-ML-Agents.md)
 * [Proximal Policy Optimization을 통한 학습](Training-PPO.md)
-* [Curriculum Learning을 통한 학습](Training-Curriculum-Learning.md)
+* [커리큘럼 러닝을 통한 학습](Training-Curriculum-Learning.md)
 * [모방 학습을 통한 학습](Training-Imitation-Learning.md)
 * [LSTM을 통한 학습](Feature-Memory.md)
 * [클라우드에서 아마존 웹 서비스를 통한 학습](Training-on-Amazon-Web-Service.md)
@@ -64,4 +64,5 @@
 
 ## 한글 번역
 
-해당 문서의 한글 번역은 [장현준 (Hyeonjun Jang)]([https://github.com/janghyeonjun](https://github.com/janghyeonjun))에 의해 진행되었습니다. 내용상 오류나 오탈자가 있는 경우 totok682@naver.com 으로 연락주시면 감사드리겠습니다.
+해당 문서의 한글 번역은 [장현준 (Hyeonjun Jang)]([https://github.com/janghyeonjun](https://github.com/janghyeonjun))에 의해 진행되었습니다. 
+내용상 오류나 오탈자가 있는 경우 totok682@naver.com 으로 연락주시면 감사드리겠습니다.
