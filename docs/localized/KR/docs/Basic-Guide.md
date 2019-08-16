@@ -45,6 +45,7 @@
    _참고: 대부분의 ML-Agents toolkit 생성 모델에서 CPU가 빠릅니다_
 9. **Play** 버튼을 누르면 학습된 모델을 사용하는 platform 들이 공에 균형을 맞추는 것을 볼 수 있습니다.
    
+
 ![Running a pre-trained model](images/running-a-pretrained-model.gif)
 
 ## Basics Jupyter Notebook 사용
@@ -52,63 +53,47 @@
 The `notebooks/getting-started.ipynb` [Jupyter notebook](Background-Jupyter.md) 에는 Python API 기능에 대한 간단한 설명이 포함되어 있습니다. 또한 환경이 올바르게 설정되어있는지 확인하기 위한 테스트를 제공합니다.
 `Basics` 에서, 만약 [실행파일을 이용](Learning-Environment-Executable.md)하고 싶다면 `env_name` 을 **유니티 실행파일 이름**으로 설정 하고, 유니티 에디터를 통해 현재 씬과 상호작용 하고싶을 경우 `None`으로 설정하십시오 . 
 
-Before building the environment or interacting with it in the editor, select `Ball3DAcademy` in the **Hierarchy** window of the Unity editor and make sure `Control` checkbox is checked under `Ball 3D Academy` component. 
+환경을 구축하거나 에디터내에서 상호작용 하기전에 유니티 에디터의 **Hierarchy**창에서  `Ball3DAcademy` 를 선택하고 `Ball 3D Academy` 컴포넌트 아래에 있는 `Control` 체크박스가 체크되어있는지 확인하십시오.
 
-More information and documentation is provided in the
-[Python API](Python-API.md) page.
+더 많은 정보와 문서는 [Python API](Python-API.md) 페이지에서 제공합니다.
 
-## Training the Brain with Reinforcement Learning
+## 강화 학습을 통한 Brain 학습
 
-### Setting up the environment for training
+### 학습을 위한 환경 설정
 
-To set up the environment for training, you will need to specify which agents are contributing
-to the training and which Brain is being trained. You can only perform training with
-a `Learning Brain`.
+학습을 위한 환경 설정을 위해, 어떤 에이전트가 학습에 기여하고 있고 어떤 Brain을 학습할 것인지 정해야합니다. `Learning Brain` 을 통해서만 학습을 진행할 수 있습니다.
 
-1. Each platform agent needs an assigned `Learning Brain`.  In this example, each platform agent was created using a prefab.  To update all of the brains in each platform agent at once, you only need to update the platform agent prefab.  In the **Project** window, go to the `Assets/ML-Agents/Examples/3DBall/Prefabs` folder. Expand `Game` and click on the `Platform` prefab.  You should see the `Platform` prefab in the **Inspector** window.  In the **Project** window, drag the **3DBallLearning** Brain located in  `Assets/ML-Agents/Examples/3DBall/Brains` into the `Brain` property under `Ball 3D Agent (Script)` component in the **Inspector** window.  
+1. 각 platform 에이전트는 할당된  `Learning Brain` 가 필요합니다. 이 예제에서는, 프리팹을 사용하여 platform 에이전트를 생성합니다. 각 platform의 모든 brain을 한번에 업데이트 하기 위해, platform 에이전트 프리팹을 업데이트 하기만 하면 됩니다. **Project** 창에서,  `Assets/ML-Agents/Examples/3DBall/Prefabs` 폴더를 여십시오. `Game` 을 확장하고 `Platform` 프리팹을 클릭하십시오.   **Inspector** 창에 `Platform` 프리팹이 보일 것입니다. **Project** 창에서,  `Assets/ML-Agents/Examples/3DBall/Brains` 에 위치한 **3DBallLearning** Brain을  **Inspector** 창의   `Ball 3D Agent (Script)` 컴포넌트 아래에 있는 `Brain` 프로퍼티로 드래그 하십시오.
 
-   **Note**: The Unity prefab system will modify all instances of the agent properties in your scene.  If the agent does not synchronize automatically with the prefab, you can hit the Revert button in the top of the **Inspector** window.
+   **참고**: 유니티 프리팹 시스템은 씬안에 있는 모든 에이전트 인스턴스를 수정할 것입니다. 만약 에이전트가 프리팹과 자동으로 동기화 되는 것을 원치 않는다면 **Inspector**창의 상단에서 Revert 버튼을 누르십시오.
 
-2. In the **Hierarchy** window, select `Ball3DAcademy`.
-3. In the **Project** window, go to `Assets/ML-Agents/Examples/3DBall/Brains` folder and drag the **3DBallLearning** Brain to the `Brains` property under `Braodcast Hub` in the `Ball3DAcademy` object in the **Inspector** window.  In order to train, make sure the `Control` checkbox is selected.
+2. **Hierarchy** 창에서, `Ball3DAcademy`를 선택하십시오.
+3. **Project** 창에서, `Assets/ML-Agents/Examples/3DBall/Brains` 폴더를 열고 **3DBallLearning** Brain 을  **Inspector** 창의  `Ball3DAcademy`  안의  `Braodcast Hub`  아래에 있는 `Brains` 프로퍼티로 드래그 하십시오.  학습을 위해, `Control` 체크박스가 선택되어있는지 확인하십시오.
 
-   **Note:** Assigning a Brain to an agent (dragging a Brain into the `Brain` property of 
-the agent) means that the Brain will be making decision for that agent. Whereas dragging
-a Brain into the Broadcast Hub means that the Brain will be exposed to the Python process.
-The `Control` checkbox means that in addition to being exposed to Python, the Brain will
-be controlled by the Python process (required for training).
+   **참고:** Brain을 에이전트에게 할당(Brain을 에이전트의 `Brain` 프로퍼티로 드래그) 하는 것은 Brain이 에이전트의 의사를 결정을 한다는 것을 의미합니다. 반면에 Brain을 Broadcast Hub로 드래그 하는 것은 파이썬 프로세스에 Brain을 노출 시키는 것을 의미합니다. The `Control` 체크 박스는 파이썬에 노출되는것 뿐만 아니라 파이썬 프로세스(학습을 위해 필요한)에 의해 Brain이 제어됨을 의미 합니다. 
 
-   ![Set Brain to External](images/mlagents-SetBrainToTrain.png)
+![Set Brain to External](images/mlagents-SetBrainToTrain.png)
 
-### Training the environment
+### 환경 학습
 
-1. Open a command or terminal window.
-2. Navigate to the folder where you cloned the ML-Agents toolkit repository.
-   **Note**: If you followed the default [installation](Installation.md), then
-   you should be able to run `mlagents-learn` from any directory.
-3. Run `mlagents-learn <trainer-config-path> --run-id=<run-identifier> --train`
-   where:
-    - `<trainer-config-path>` is the relative or absolute filepath of the
-      trainer configuration. The defaults used by example environments included
-      in `MLAgentsSDK` can be found in `config/trainer_config.yaml`.
-    - `<run-identifier>` is a string used to separate the results of different
-      training runs
-    - `--train` tells `mlagents-learn` to run a training session (rather
-      than inference)
-4. If you cloned the ML-Agents repo, then you can simply run
+1. command 또는 윈도우 터미널 창을 여십시오.
+2. ML-Agents toolkit 저장소가 복제되있는 폴더로 가십시오.
+   **참고**: 만약 디폴트 [설치](Installation.md)를 따라했다면, 어느 디렉토리에서든 `mlagents-learn` 를 실행시킬 수 있어야합니다.
+3. `mlagents-learn <trainer-config-path> --run-id=<run-identifier> --train` 를 실행하십시오
+   설명:
+   
+    - `<trainer-config-path>` 는 트레이너 환경 설정의 상대/절대 경로입니다.  `MLAgentsSDK`에 포함된 예제 환경에서 사용된 기본 값은  `config/trainer_config.yaml`에서 확인할 수 있습니다.
+    - `<run-identifier>` 다른 학습 실행 결과를 구분하기 위해 사용되는 문자열 입니다.
+    - `--train` 은 `mlagents-learn` 가 학습 세션(추론이 아닌)을 실행하도록 지시합니다. 
+4. 만약 ML-Agents 저장소를 복제했다면, 다음과 같이 간단히 실행할 수 있습니다.
 
       ```sh
       mlagents-learn config/trainer_config.yaml --run-id=firstRun --train
       ```
 
-5. When the message _"Start training by pressing the Play button in the Unity
-   Editor"_ is displayed on the screen, you can press the :arrow_forward: button
-   in Unity to start training in the Editor.
-
-   **Note**: Alternatively, you can use an executable rather than the Editor to
-perform training. Please refer to [this
-page](Learning-Environment-Executable.md) for instructions on how to build and
-use an executable.
+5. _"Start training by pressing the Play button in the Unity Editor"_  메세지가 화면에 표시될 때, 에디터에서 :arrow_forward: 버튼을 눌러 학습을 시작할 수 있습니다.
+   
+   **참고**: 또는, 편집기 대신 실행파일을 사용하여 학습을 할 수 있습니다. [이 페이지](Learning-Environment-Executable.md) 를 참고하여 빌드 방법과 실행파일을 사용하기 위한 방법을 확인하십시오. 
 
 ```console
 ml-agents$ mlagents-learn config/trainer_config.yaml --run-id=first-run --train
@@ -147,11 +132,9 @@ INFO:mlagents.learn:{'--curriculum': 'None',
 INFO:mlagents.envs:Start training by pressing the Play button in the Unity Editor.
 ```
 
-**Note**: If you're using Anaconda, don't forget to activate the ml-agents
-environment first.
+**참고**: 아나콘다를 사용 중이라면, ml-agents 환경을 먼저 활성화 시키는 것을 잊지 마십시오.
 
-If `mlagents-learn` runs correctly and starts training, you should see something
-like this:
+`mlagents-learn` 올바르게 실행되고 학습이 시작되었다면 다음과 같은 화면을 볼 수 있습니다:
 
 ```console
 INFO:mlagents.envs:
@@ -203,43 +186,25 @@ INFO:mlagents.trainers: first-run-0: 3DBallLearning: Step: 9000. Mean Reward: 18
 INFO:mlagents.trainers: first-run-0: 3DBallLearning: Step: 10000. Mean Reward: 27.284. Std of Reward: 28.667. Training.
 ```
 
-### After training
+### 학습 후
 
-You can press Ctrl+C to stop the training, and your trained model will be at
-`models/<run-identifier>/<brain_name>.nn` where
-`<brain_name>` is the name of the Brain corresponding to the model.
-(**Note:** There is a known bug on Windows that causes the saving of the model to
-fail when you early terminate the training, it's recommended to wait until Step
-has reached the max_steps parameter you set in trainer_config.yaml.) This file
-corresponds to your model's latest checkpoint. You can now embed this trained
-model into your Learning Brain by following the steps below, which is similar to
-the steps described
-[above](#running-a-pre-trained-model).
+Ctrl+C 를 눌러 학습을 중단할 수 있으며 학습된 모델은`models/<run-identifier>/<brain_name>.nn` 에 있을 것입니다. `<brain_name>` 은 모델에 해당하는 Brain 이름 입니다.
+(**Note:** Windows 에서 학습을 이른 시간에 종료했을 때 모델을 저장하는 과정에서 오류가 발생할 수 있는 버그가 있으므로 Step이 trainer_config.yaml에서 설정한 max_steps 파라미터에 도달할 때까지 기다리는것을 권장합니다.) 파일은 모델의 최신 체크포인트와 일치합니다. [위에](#running-a-pre-trained-model) 설명된 절차와 유사한 아래 절차를 통해 훈련된 모델을 학습 Brain에 포함시킬 수 있습니다.
 
-1. Move your model file into
-   `UnitySDK/Assets/ML-Agents/Examples/3DBall/TFModels/`.
-2. Open the Unity Editor, and select the **3DBall** scene as described above.
-3. Select the  **3DBallLearning** Learning Brain from the Scene hierarchy.
-4. Drag the `<brain_name>.nn` file from the Project window of
-   the Editor to the **Model** placeholder in the **3DBallLearning**
-   inspector window.
-5. Select Ball3DAcademy in the scene and toggle off Control, each platform's brain now regains control.
-6. Press the :arrow_forward: button at the top of the Editor.
+1. 모델 파일을 `UnitySDK/Assets/ML-Agents/Examples/3DBall/TFModels/` 로 옮기십시오.
+2. 유니티 에디터를 열고 위에 설명된 **3DBall** 씬을 선택하십시오.
+3. 씬 hierarchy로부터 **3DBallLearning** Learning Brain 을 선택하십시오.
+4. 에디터의 Project 창으로 부터 `<brain_name>.nn` 파일을 **3DBallLearning** 인스펙터 창의 **Model** placeholder 로 드래그 하십시오.
+5. 씬 안의 Ball3DAcademy 를 선택하고 Control를 끄십시오, 각 platform의 brain은 제어를 되찾습니다.
+6. 에디터의 상단의 :arrow_forward: 버튼을 누르십시오.
 
-## Next Steps
+## 다음 단계
 
-- For more information on the ML-Agents toolkit, in addition to helpful
-  background, check out the [ML-Agents Toolkit Overview](ML-Agents-Overview.md)
-  page.
-- For a more detailed walk-through of our 3D Balance Ball environment, check out
-  the [Getting Started](Getting-Started-with-Balance-Ball.md) page.
-- For a "Hello World" introduction to creating your own Learning Environment,
-  check out the [Making a New Learning
-  Environment](Learning-Environment-Create-New.md) page.
-- For a series of YouTube video tutorials, checkout the
-  [Machine Learning Agents PlayList](https://www.youtube.com/playlist?list=PLX2vGYjWbI0R08eWQkO7nQkGiicHAX7IX)
-  page.
-
+- the ML-Agents toolkit 에 대한 더 많은 정보 뿐만아니라 도움이 되는 배경 정보는 [ML-Agents Toolkit 개요](ML-Agents-Overview.md) 페이지를 확인하십시오.
+- 3D 밸런스 볼 환경에 대한 더욱 자세한 설명은 [시작하기](Getting-Started-with-Balance-Ball.md) 페이지를 참고하십시오.
+- 자신만의 학습 환경을 만들기 위한 소개 "Hello World" 를 보고싶다면 [새 학습 환경 만들기](Learning-Environment-Create-New.md) 페이지를 확인하십시오.
+- YouTube 비디오 튜토리얼 시리즈를 보고싶다면 [기계 학습 에이전트 플레이리스트](https://www.youtube.com/playlist?list=PLX2vGYjWbI0R08eWQkO7nQkGiicHAX7IX) 페이지를 확인하십시오.
+  
   ## 한글 번역
 
 해당 문서의 한글 번역은 [장현준 (Hyeonjun Jang)]([https://github.com/janghyeonjun](https://github.com/janghyeonjun))에 의해 진행되었습니다. 
